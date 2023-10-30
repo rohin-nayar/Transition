@@ -1,19 +1,33 @@
+#!/usr/bin/env python
+
+"""\ 
+Transition: Data visualisation for personal exercise and sport activity
+"""
+
 from functools import reduce
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-# Concept is to have this record my workouts and perhaps write it to a file
-# Also want to plot a basic activity graph to track and keep record of 
-# the number of swim, gym, cycling and running sessions completed 
-# during the week
-
-test = pd.read_csv("Data/Records.csv")
+test = pd.read_csv("Data/Training_Records.csv")
 print(test.head(5))
 test['Date'] = pd.to_datetime(test['Date'],dayfirst=True)
 sum_duration_by_date = test.groupby('Date')['Duration (min)'].sum().reset_index()
 sum_duration_by_date.plot(x ="Date",y = "Duration (min)",kind='scatter')
 plt.show()
+
+class Data:
+
+    def __init__(self,fileData,variables):
+        self.fileData = fileData
+        self.variables = variables
+
+    def getData(self,parameter):
+
+    def setData(self,fileData):
+        self.fileData = fileData
+    
+    def setVariable(self,varibales):
+        self.variables = varibales
 
 
 
