@@ -22,12 +22,13 @@ class Data:
         self.variables = variables
 
     def getData(self,parameter):
+        load_data = pd.read_csv("Data/Training_Records.csv")
 
     def setData(self,fileData):
         self.fileData = fileData
     
-    def setVariable(self,varibales):
-        self.variables = varibales
+    def setVariable(self,variables):
+        self.variables = variables
 
 
 
