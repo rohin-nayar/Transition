@@ -1,66 +1,36 @@
-#!/usr/bin/env python
-
 """\ 
 Transition: Data visualisation for personal exercise and sport activity
 """
-
-from functools import reduce
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.dates import MonthLocator
 
-test = pd.read_csv("Data/Training_Records.csv")
-print(test.head(5))
-test['Date'] = pd.to_datetime(test['Date'],dayfirst=True)
-sum_duration_by_date = test.groupby('Date')['Duration (min)'].sum().reset_index()
-sum_duration_by_date.plot(x ="Date",y = "Duration (min)",kind='scatter')
-plt.show()
+#Enables control over what parameters to plot
+#to understand specifics such as consistency for duration of swims
 
-class Data:
-
-    def __init__(self,fileData,variables):
-        self.fileData = fileData
-        self.variables = variables
-
-    def getData(self,parameter):
-        load_data = pd.read_csv("Data/Training_Records.csv")
-
-    def setData(self,fileData):
-        self.fileData = fileData
+class DataAnalyser:
     
-    def setVariable(self,variables):
-        self.variables = variables
+    def __init__(self, dataRecords):
+        self.dataRecords = dataRecords
 
+    def loadData(self):
+        self.data = pd.DataFrame(pd.read_csv(self.dataRecords))
+        print(self.data.head(5))
+        self.data['Date'] = pd.to_datetime(self.data['Date'])
 
+    def plotData(self):
+        fig, ax = plt.subplots()
+        sns.set_theme()
+        sns.lineplot(x='Date', y='Body Weight (kg)', data=self.data, marker='o', color='b')  
+        ax.xaxis.set_major_locator(MonthLocator(interval=1))
+        plt.xlabel('Date')
+        plt.ylabel('Body Weight (kg)')
+        plt.title('Body Weight Over Time')
+        plt.tight_layout()
+        plt.show()
 
-# Print the result
-print(sum_duration_by_date)
-# class Routine:
-
-#     data = {
-#         'Monday': [],
-#         'Tuesday': [],
-#         'Wednesday': [],
-#         'Thursday': [],
-#         'Friday': [],
-#         'Saturday': [],
-#         'Sunday': []}
-    
-#     def __init__(self, date, sport, duration, NumberOfSessions):
-#         self.date = date
-#         self.sport = sport
-#         self.duration = duration
-#         self.NumberOfSessions = NumberOfSessions
-    
-#     def __repr__(self):
-#         return "On {date} you have {sport} for {duration}!".format(date = self.date, sport = self.sport, duration = self.duration)
-    
-#     # Allocate the parameters to the data dictionary
-#     def setActivity(self,data):
-#         data[self.date] = [self.sport, self.duration, self.NumberOfSessions]
-
-#     # Store entries to a text file or csv file 
-    
-#     # Can use a dataframe to store and access data too
-
-#     # Retrieve data depending on input dates
-#     def getActivity(self):
+# Example for testing
+example = DataAnalyser(dataRecords="Data/Records.csv")
+example.loadData()
+example.plotData()
