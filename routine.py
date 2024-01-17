@@ -14,7 +14,10 @@ class DataAnalyser:
         self.features = features
         self.__init_loadData()
         self.__init_plotData()
-    
+
+    def check_csv(self):
+        # Implement csv checker
+
     @staticmethod
     def check_features(self):
         dataCheck = pd.read_csv(self.dataRecords)
@@ -52,6 +55,8 @@ class DataAnalyser:
 
         plt.tight_layout()
         plt.show()
+
+        weight = self.data['Weight (kg)']
 
 if __name__ == "__main__":
     rohin = DataAnalyser(dataRecords="Data/Records_csv.csv",features=None)
