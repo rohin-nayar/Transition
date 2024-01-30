@@ -14,10 +14,7 @@ class DataAnalyser:
         self.features = features
         self.__init_loadData()
         self.__init_plotData()
-
-    def check_csv(self):
-        # Implement csv checker
-
+    
     @staticmethod
     def check_features(self):
         dataCheck = pd.read_csv(self.dataRecords)
@@ -30,7 +27,7 @@ class DataAnalyser:
     def __init_loadData(self):
         self.data = pd.read_csv(self.dataRecords)
         print(self.data.head(5))
-        self.data['Date'] = pd.to_datetime(self.data['Date'])
+        self.data['Date'] = pd.to_datetime(self.data['Date'], format="%d/%m/%Y")
 
     def __init_plotData(self, xval='Date', yvals=['Body Weight (kg)', 'Duration (min)']):
         sns.set_theme()
