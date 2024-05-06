@@ -1,6 +1,6 @@
 # Welcome to Transition: Your Ultimate Health & Fitness Companion
 
-[Transition Logo/Image Here]
+![Data Visualizer](img/DataVisualiser_060520224.png)
 
 Are you ready to make a meaningful transition in your fitness journey? Transition is your all-in-one platform designed to help you track and improve your performance across various sports and exercise disciplines. It's time to take charge of your fitness goals and witness your remarkable transformation.
 
