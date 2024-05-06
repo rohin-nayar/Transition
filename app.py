@@ -17,7 +17,7 @@ app = Dash(__name__)
 
 # Define the app layout
 app.layout = html.Div([
-    html.H3('My First App with Data and a Graph'),
+    html.H3('Transition Data Visualiser'),
     html.Hr(),
     dcc.RadioItems(
         options=[{'label': 'Body Weight (kg)', 'value': 'Body Weight (kg)'},
